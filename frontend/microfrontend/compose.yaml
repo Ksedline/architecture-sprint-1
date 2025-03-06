@@ -1,0 +1,32 @@
+services:
+  auth:
+    build:
+      context: ./auth
+      dockerfile: ./Dockerfile.frontend
+    ports:
+      - 3001:3001
+
+  places:
+    build:
+      context: ./places
+      dockerfile: ./Dockerfile.frontend
+    ports:
+      - 3002:3002
+
+  profile:
+    build:
+      context: ./profile
+      dockerfile: ./Dockerfile.frontend
+    ports:
+      - 3003:3003
+
+  host:
+    build:
+      context: ./host
+      dockerfile: ./Dockerfile.frontend
+    ports:
+      - 3000:3000
+    depends_on:
+      - auth
+      - places
+      - profile
